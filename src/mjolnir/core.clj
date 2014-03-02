@@ -1,6 +1,12 @@
-(ns mjolnir.core)
+(ns mjolnir.core
+  (:require [instaparse.core :as insta]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+; where x = 1
+
+(def parser (insta/parser
+             "WHERE = <'WHERE '> symbol <' = '> exp
+              symbol = #'[a-zA-Z]+'
+              exp = #'[0-9]+'"))
+
+(defn use-parser [x]
+  (parser x))

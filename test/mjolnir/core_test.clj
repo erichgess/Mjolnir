@@ -2,6 +2,9 @@
   (:require [clojure.test :refer :all]
             [mjolnir.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest parses-grammar
+  (testing "Actually parses stuff"
+    (is (= (parser "WHERE X = 1")
+           [:WHERE [:symbol "X"] [:exp "1"]]))
+    (is (= (parser "WHERE multichar = 22")
+           [:WHERE [:symbol "multichar"] [:exp "22"]]))))
